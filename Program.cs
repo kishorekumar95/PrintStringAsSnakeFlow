@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Text;
 
 namespace SnakeString
 {
@@ -7,7 +9,7 @@ namespace SnakeString
         static void Main(string[] args)
         {
             Console.WriteLine("Enter The String");
-            SnakeString(Console.ReadLine());           
+            MString(Console.ReadLine());
         }
 
         private static void SnakeString(String enteredString)
@@ -33,6 +35,30 @@ namespace SnakeString
                     flag = flag != 2 ? flag : 0;
                 }
             }
+        }
+
+        private static void MString(string enteredString)
+        {
+            var lineOne = new StringBuilder();
+            var lineThree = new StringBuilder();
+            var lineTwo = new StringBuilder();
+
+            var j = 0;
+            var k = 0;
+            var l = 0;
+            var space = " ";
+
+            for (int i = 0; i < enteredString.Length; i++,j++,k++,l++)
+            {
+
+                lineOne = j % 4 == 0 ? lineOne.Append(enteredString[j]) : lineOne.Append(space);
+                lineTwo = k % 2 == 1 ? lineTwo.Append(enteredString[k]) : lineTwo.Append(space);
+                lineThree = l % 2 == 0 && l % 4 != 0 ? lineThree.Append(enteredString[l]) : lineThree.Append(space);
+            }
+
+            Console.WriteLine(lineThree);
+            Console.WriteLine(lineTwo);
+            Console.WriteLine(lineOne);
         }
     }
 }
